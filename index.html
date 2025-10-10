@@ -1,0 +1,530 @@
+<html lang="en">
+  <head>
+    <title>
+     TORÍ
+    </title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap 5 CSS (load before Tailwind so Tailwind utilities keep priority for shared class names like .container) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"
+      defer="defer"
+    ></script>
+    <script>
+      // set active nav link based on current path (filename)
+      document.addEventListener('DOMContentLoaded', function () {
+        try {
+          var path = window.location.pathname.split('/').pop() || 'index.html';
+          var navLinks = document.querySelectorAll('.site-header nav a');
+          navLinks.forEach(function(a){
+            var href = a.getAttribute('href') || '';
+            // normalize: if href is a full URL, extract the filename
+            var hrefFile = href.split('/').pop() || '';
+            if (hrefFile === path || (hrefFile === '' && path === 'index.html')) {
+              a.classList.add('active');
+              a.setAttribute('aria-current', 'page');
+            }
+          });
+        } catch (e) {
+          // fail silently
+          console.warn('nav active script error', e);
+        }
+      });
+      
+      // book cover modal interactions
+      document.addEventListener('DOMContentLoaded', function () {
+        try {
+          var modal = document.getElementById('cover-modal');
+          var modalImg = document.getElementById('cover-modal-img');
+          var closeBtn = modal && modal.querySelector('.cover-modal-close');
+
+          function openModal(src, alt) {
+            if (!modal) return;
+            modalImg.src = src;
+            modalImg.alt = alt || 'Book cover';
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            // focus close button for easier escape
+            if (closeBtn) closeBtn.focus();
+          }
+
+          function closeModal() {
+            if (!modal) return;
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            modalImg.src = '';
+          }
+
+          // bind to all cover buttons
+          var coverButtons = document.querySelectorAll('.cover-btn');
+          coverButtons.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+              var src = btn.getAttribute('data-src') || btn.querySelector('img') && btn.querySelector('img').src;
+              var alt = btn.querySelector('img') && btn.querySelector('img').alt;
+              openModal(src, alt);
+            });
+            // allow keyboard Enter/Space to open
+            btn.addEventListener('keyup', function (e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                btn.click();
+              }
+            });
+          });
+
+          // close handlers
+          if (closeBtn) closeBtn.addEventListener('click', closeModal);
+          modal && modal.addEventListener('click', function (e) {
+            if (e.target && e.target.getAttribute && e.target.getAttribute('data-close') === 'true') closeModal();
+          });
+          window.addEventListener('keyup', function (e) { if (e.key === 'Escape') closeModal(); });
+        } catch (err) {
+          console.warn('cover modal init error', err);
+        }
+      });
+    </script>
+  </head>
+  <body class="antialiased bg-body text-body font-body">
+    <div>
+     <div>
+  <section class="relative bg-white site-header" x-data="{ mobileNavOpen: false }" x-effect="document.body.style.overflow = mobileNavOpen ? 'hidden' : ''">
+          <!-- header has no pre-nav image; hero content will show the image in the body -->
+          <nav class="py-6">
+            <div class="container mx-auto px-4">
+              <div class="relative flex items-center justify-between">
+                <a class="inline-block" href="#">
+                  <img src="images/logo.svg" class="h-10 md:h-12 w-auto" alt="TORÍ logo" />
+                </a>
+                  <!-- Mobile hamburger: visible on small screens, hidden on md+ -->
+                  <button
+                    class="md:hidden inline-flex items-center justify-center p-2 ml-3 hamburger-mobile-shift"
+                    x-on:click="mobileNavOpen = !mobileNavOpen"
+                    aria-label="Toggle navigation"
+                  >
+                    <!-- simple hamburger icon (three bars) -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M3 6h18M3 12h18M3 18h18" stroke="#1D1F1E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                <ul
+                  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:flex"
+                >
+                  <li class="mr-8">
+                    <a
+                      class="inline-block text-teal-900 hover:text-lime-500 font-medium"
+                      href="index.html"
+                      >HOME</a
+                    >
+                  </li>
+                  <li class="mr-8">
+                    <a
+                      class="inline-block text-teal-900 hover:text-lime-500 font-medium"
+                      href="about.html"
+                      >ABOUT US</a
+                    >
+                  </li>
+                  <li class="mr-8">
+                    <a
+                      class="inline-block text-teal-900 hover:text-lime-500 font-medium"
+                      href="contact.html"
+                      >CONTACT US</a
+                    >
+                  </li>
+                    <li class="ml-8" style="position: relative; left: 195px;">
+                      <a
+                      class="inline-block px-6 py-2 text-white font-medium rounded-full transition"
+                      href="#"
+                      style="background-color: #B85025;"
+                      >Become a writter</a
+                      >
+                    </li>
+                  </ul>
+                <!-- ...existing header nav and CTA markup... -->
+            <br />
+            <hr>
+          </nav>
+         
+          <div class="relative pt-0 pb-6 sm:pb-8 lg:pt-0 lg:pb-12">
+            <!-- full-bleed hero image wrapper: use SVG with PNG fallback for crisp scaling -->
+            <div class="relative w-full hero-wrap">
+               <br />
+              <picture>
+                <source srcset="images/bg.svg" type="image/svg+xml" />
+                <img
+                  src="images/bg.png"
+                  alt="Illustration representing green energy"
+                  loading="lazy"
+                  class="hero-img w-full"
+                />
+              </picture>
+              <!-- CTA overlay placed over the SVG hero -->
+              <div class="hero-cta-wrap">
+                <div class="container mx-auto px-4">
+                  <div class="hero-cta-inner">
+                    <a href="#" class="hero-cta">Join the waitlist</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container mx-auto px-4 relative text-center">
+              <!-- content container preserved for potential overlays or following content -->
+            </div>
+          </div>
+          <!-- Mobile nav: right-side drawer -->
+          <div x-cloak>
+            <!-- Backdrop -->
+            <div
+              class="fixed inset-0 z-40 bg-black/40 transition-opacity"
+              x-show="mobileNavOpen"
+              x-transition.opacity
+              x-on:click="mobileNavOpen=false"
+              aria-hidden="true"
+            ></div>
+
+            <!-- Drawer panel -->
+            <aside
+              class="mobile-drawer fixed right-0 top-0 bottom-0 z-50 w-80 max-w-[85vw] bg-white shadow-xl flex flex-col"
+              x-show="mobileNavOpen"
+              x-transition:enter="transform transition ease-in-out duration-200"
+              x-transition:enter-start="translate-x-full"
+              x-transition:enter-end="translate-x-0"
+              x-transition:leave="transform transition ease-in-out duration-200"
+              x-transition:leave-start="translate-x-0"
+              x-transition:leave-end="translate-x-full"
+              role="dialog"
+              aria-modal="true"
+              :aria-hidden="(!mobileNavOpen).toString()"
+            >
+              <div class="flex items-center justify-between px-5 py-4 border-b">
+                <a class="inline-block" href="#">
+                  <img src="images/logo.svg" class="h-10 w-auto" alt="TORÍ logo" />
+                </a>
+                <button class="p-2" x-on:click="mobileNavOpen=false" aria-label="Close menu">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="#1D1F1E" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </button>
+              </div>
+
+              <nav class="p-5 overflow-y-auto">
+                <ul class="nav-list">
+                  <li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="index.html">HOME</a></li>
+                  <li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="about.html">ABOUT US</a></li>
+                  <li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="contact.html">CONTACT US</a></li>
+                </ul>
+              </nav>
+
+              <div class="mt-auto p-5 border-t mb-20 md:mb-0">
+                <a href="#" class="inline-block w-full text-center px-4 py-2 rounded-full text-white font-medium" style="background-color:#B85025;">Become a writer</a>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </div>
+<img id="flags-img" src="images/flags.svg" alt="Decorative flags" class="hidden" aria-hidden="true" />
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    var hero = document.querySelector('.hero-wrap');
+    var pic = hero && hero.querySelector('picture');
+    var flags = document.getElementById('flags-img');
+    if (!pic || !flags) return;
+    // show and style the flags image, then insert it immediately after the hero picture
+    flags.classList.remove('hidden');
+    flags.classList.add('block', 'mx-auto', 'mt-6', 'w-16', 'h-auto');
+    pic.insertAdjacentElement('afterend', flags);
+  } catch (e) {
+    console.warn('flags placement error', e);
+  }
+});
+</script>
+  <!-- Books Section -->
+  <section class="py-12 lg:py-24 book-frame-section" aria-labelledby="books-heading">
+        <div class="container mx-auto px-4">
+          <div class="mx-auto max-w-6xl text-center">
+            <!-- heading: txt.svg used as visual heading -->
+               <img id="books-heading" src="images/book section/txt.svg" alt="Our Books" class="heading-svg" />
+
+            <div class="relative book-scene">
+              <!-- decorative lines overlay placed behind the covers -->
+              <img src="images/book section/lines.svg" alt="Decorative lines" class="lines-overlay" aria-hidden="true" />
+
+              <!-- MOBILE: scrollable row of covers -->
+              <div class="book-grid mobile-scroller" role="list" aria-label="Featured books">
+                <button class="cover-btn" aria-label="View Book 1" data-src="images/book section/1.svg"><img role="listitem" tabindex="0" src="images/book section/1.svg" alt="Book cover 1" class="book-cover" /></button>
+                <button class="cover-btn" aria-label="View Book 2" data-src="images/book section/2.svg"><img role="listitem" tabindex="0" src="images/book section/2.svg" alt="Book cover 2" class="book-cover" /></button>
+                <button class="cover-btn" aria-label="View Book 3" data-src="images/book section/3.svg"><img role="listitem" tabindex="0" src="images/book section/3.svg" alt="Book cover 3" class="book-cover" /></button>
+                <button class="cover-btn" aria-label="View Book 4" data-src="images/book section/4.svg"><img role="listitem" tabindex="0" src="images/book section/4.svg" alt="Book cover 4" class="book-cover" /></button>
+                <button class="cover-btn" aria-label="View Book 5" data-src="images/book section/5.svg"><img role="listitem" tabindex="0" src="images/book section/5.svg" alt="Book cover 5" class="book-cover" /></button>
+              </div>
+
+              <!-- DESKTOP: positioned covers that mimic the frame (absolute positioning) -->
+              <div class="covers-wrapper" aria-hidden="true">
+                <button class="cover-btn cover-1" data-src="images/book section/1.svg"><img src="images/book section/1.svg" alt="" /></button>
+                <button class="cover-btn cover-2" data-src="images/book section/2.svg"><img src="images/book section/2.svg" alt="" /></button>
+                <button class="cover-btn cover-3" data-src="images/book section/3.svg"><img src="images/book section/3.svg" alt="" /></button>
+                <button class="cover-btn cover-4" data-src="images/book section/4.svg"><img src="images/book section/4.svg" alt="" /></button>
+                <button class="cover-btn cover-5" data-src="images/book section/5.svg"><img src="images/book section/5.svg" alt="" /></button>
+              </div>
+            </div>
+            <!-- modal for viewing larger cover art -->
+            <div id="cover-modal" class="cover-modal" role="dialog" aria-modal="true" aria-hidden="true">
+              <div class="cover-modal-backdrop" data-close="true"></div>
+              <div class="cover-modal-content">
+                <button class="cover-modal-close" aria-label="Close">×</button>
+                <img id="cover-modal-img" src="" alt="Book cover" class="cover-modal-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+  <!-- Section2 (DESKTOP) -->
+  <section class="hidden md:flex items-center justify-between py-12 px-4 bg-gray-100" aria-label="Image and text block - desktop">
+    <!-- Image aligned to the left -->
+    <div class="w-1/2">
+      <img src="images/img01.svg" alt="Example Image" class="w-full h-auto" />
+    </div>
+
+    <!-- Text aligned to the right -->
+    <div class="w-1/2 text-right">
+      <img src="images/img02.svg" class="block mx-auto mb-4" height="100" width="auto" alt="Decorative" />
+      <h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:45px; font-weight:850; color:#492C25; margin-bottom:20px;">
+        Stay Connected to Culture. <br /> One Story at a Time.
+      </h1>
+      <h2 class="text-md md:text-md md:text-md leading-relaxed" style="font-weight:400;">
+        We make it easy to experience the richness of African heritage through fiction. Whether it's folklore, family, or tradition; discover stories that keep you grounded in who you are.
+      </h2>
+    </div>
+  </section>
+
+  <!-- Section2 (MOBILE ONLY) -->
+  <section class="block md:hidden py-8 px-4 bg-gray-100" aria-label="Image and text block - mobile">
+    <div class="max-w-xl mx-auto text-center">
+      <!-- Image (stacked, full width) -->
+      <img src="images/img01.svg" alt="Example Image" class="w-full h-auto mb-6" />
+
+      <!-- Decorative/heading image -->
+      <img src="images/img02.svg" alt="Example Text" class="inline-block mb-4 w-3/4 max-w-xs" />
+
+      <!-- Mobile-optimized heading -->
+      <h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:28px; font-weight:800; color:#492C25; margin-bottom:12px; line-height:1.15;">
+        Stay Connected to Culture.<br />One Story at a Time.
+      </h1>
+
+      <!-- Mobile-optimized body -->
+      <p class="text-base leading-relaxed text-gray-700" style="font-weight:300;">
+        We make it easy to experience the richness of African heritage through fiction. Whether it's folklore, family, or tradition; discover stories that keep you grounded in who you are.
+      </p>
+    </div>
+  </section>
+
+
+  <!--email list section-->
+  <section class="py-12 lg:py-24 email-list-section" style="background-color: #FDF7F2;">
+    <!-- decorative eline graphic placed behind the content -->
+    <img src="images/eline.svg" alt="" class="email-eline" aria-hidden="true" />
+    <div class="container mx-auto px-4 text-center">
+      <img src="images/email.svg" alt="Subscribe to our Newsletter" class="inline-block mb-6 w-3/4 max-w-xs" />
+      <p class="mb-8 text-gray-700" style="font-size:19px; font-weight:500;">
+       We’re getting ready to launch our platform. Join our waitlist and we’ll notify you when we are live!
+      </p>
+      <form class="max-w-2xl mx-auto" action="#" method="POST">
+        <div class="email-field-wrapper">
+          <div class="email-field">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+              class="email-input"
+              style="font-size:16px;"
+            />
+            <button
+              type="submit"
+              class="email-btn"
+              style="font-size:15px;"
+            >
+              Notify me
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!--Become a writter section (DESKTOP ONLY)-->
+  <section class="hidden md:flex items-center justify-between py-12 px-4 bg-gray-100" aria-label="Become a writer - desktop">
+    <!-- Text and decorative image aligned to the left -->
+    <div class="w-1/2 text-left">
+      <img src="images/bw2.svg" class="block mb-4" height="100" width="auto" alt="Decorative" />
+      <h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:45px; font-weight:850; color:#492C25; margin-bottom:20px;">
+        Got a Story to Tell?
+      </h1>
+      <h2 class="text-xl lg:text-2xl leading-relaxed" style="font-weight:400;">
+        We are inviting african writers, poets and storytellers. 
+        <br />Share your voice with the world through TORÍ 
+      </h2>
+    </div>
+
+    <!-- Image aligned to the right -->
+    <div class="w-1/2">
+      <img src="images/bw1.svg" alt="Example Image" class="w-18 md:w-26 h-auto mx-auto" />
+    </div>
+  </section>
+
+  <!--Become a writter section (MOBILE ONLY)-->
+  <section class="block md:hidden py-8 px-4 bg-gray-100" aria-label="Become a writer - mobile">
+    <div class="max-w-xl mx-auto text-center">
+      <img src="images/bw1.svg" alt="Become a writer illustration" class="w-full h-auto mb-6" />
+      <img src="images/bw2.svg" alt="Become a writer" class="inline-block mb-4 w-3/4 max-w-xs" />
+      <h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:28px; font-weight:800; color:#492C25; margin-bottom:12px; line-height:1.15;">
+        Got a Story to Tell?
+      </h1>
+      <p class="text-lg leading-relaxed text-gray-700" style="font-weight:400;">
+        We are inviting african writers, poets and storytellers. Share your voice with the world through TORÍ.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 lg:py-24 email-list-section" style="background-color: #FDF7F2;">
+    <!-- decorative eline graphic placed behind the content -->
+    <img src="images/eline.svg" alt="" class="email-eline" aria-hidden="true" />
+    <div class="container mx-auto px-4 text-center">
+      <h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:45px; font-weight:850; color:#492C25; margin-bottom:20px;">
+        Got Questions? Let’s Talk
+      </h1>
+      <p class="mb-8 text-gray-700" style="font-size:19px; font-weight:500;">
+      Whether you're a reader, writer, or just curious about TORÍ, we’d love to hear from you. Reach out, we’re here to help and support you.
+      </p>
+      <form class="max-w-2xl mx-auto" action="#" method="POST">
+        <div class="email-field-wrapper">
+          <div class="email-field">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+              class="email-input"
+              style="font-size:16px;"
+            />
+            <button
+              type="submit"
+              class="email-btn"
+              style="font-size:15px;"
+            >
+              Notify me
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+ 
+  <!-- footer section with links and social icons -->
+ <footer>
+    <section class="relative py-12 lg:py-24 bg-orange-50 overflow-hidden site-footer">
+        <img
+          class="absolute bottom-0 left-0"
+          src="fauna-assets/footer/waves-lines-left-bottom.png"
+          alt=""
+        />
+        <div class="container px-4 mx-auto relative">
+          <div class="flex flex-wrap mb-16 -mx-4 footer-top">
+            <div class="w-full lg:w-2/12 xl:w-2/12 px-4 mb-16 lg:mb-0 logo-col">
+              <a class="inline-block mb-4" href="#!"
+                ><img src="images/logo.svg" alt=""
+              /></a>
+            </div>
+            <div class="w-full md:w-7/12 lg:w-6/12 px-4 mb-16 lg:mb-0 links-col">
+              <div class="flex flex-wrap -mx-4">
+                <div class="w-1/2 xs:w-1/3 px-4 mb-8 xs:mb-0">
+                  <h3 class="mb-6">ABOUT US</h3>
+                  <ul>
+                    <li class="mb-4">
+                      <a
+                        class="inline-block text-gray-600 hover:text-lime-500 font-medium"
+                        href="#!"
+                        >CONTACT US</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="w-1/2 xs:w-1/3 px-4 mb-8 xs:mb-0">
+                  <h3 class="mb-6">PRIVACY POLICY</h3>
+                  <ul>
+                    <li class="mb-4">
+                      <a
+                        class="inline-block text-gray-600 hover:text-lime-500 font-medium"
+                        href="#!"
+                        >TERMS & CONDITIONS</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr >
+          <br />
+          <div class="flex flex-wrap -mb-3 justify-between footer-bottom">
+            <div class="footer-social" role="list">
+              <a class="social-link" href="#!" aria-label="Facebook" role="listitem">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <g clip-path="url(#clip0_230_4832)">
+                    <path d="M11.5481 19.9999V10.8776H14.6088L15.068 7.32147H11.5481V5.05138C11.5481 4.02211 11.8327 3.32067 13.3104 3.32067L15.1919 3.3199V0.139138C14.8665 0.0968538 13.7496 -9.15527e-05 12.4496 -9.15527e-05C9.735 -9.15527e-05 7.87654 1.65687 7.87654 4.69918V7.32147H4.80652V10.8776H7.87654V19.9999H11.5481Z" />
+                  </g>
+                </svg>
+              </a>
+              <a class="social-link" href="#!" aria-label="Instagram" role="listitem">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" />
+                </svg>
+              </a>
+              <a class="social-link" href="#!" aria-label="LinkedIn" role="listitem">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M11.5481 19.9999V10.8776H14.6088L15.068 7.32147H11.5481V5.05138C11.5481 4.02211 11.8327 3.32067 13.3104 3.32067L15.1919 3.3199V0.139138C14.8665 0.0968538 13.7496 -9.15527e-05 12.4496 -9.15527e-05C9.735 -9.15527e-05 7.87654 1.65687 7.87654 4.69918V7.32147H4.80652V10.8776H7.87654V19.9999H11.5481Z" />
+                </svg>
+              </a>
+              <a class="social-link" href="#!" aria-label="YouTube" role="listitem">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z" />
+                </svg>
+              </a>
+            </div>
+
+            <p class="text-sm text-gray-500 mb-3 footer-copy">
+              TORI © 2025, All rights reserved.
+            </p>
+          </div>
+        </div>
+       </div>
+      </section>
+   
+ 
+  </footer>
+    <!-- Bootstrap 5 Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    </body>
+</html>
