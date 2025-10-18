@@ -55,7 +55,7 @@
   align-items: center;
   max-width: 920px; /* aligns with other centered content */
   /* moved up 40px and left 30px relative to previous position */
-  transform: translateX(50px) translateY(-135px);
+  transform: translateX(65px) translateY(-135px);
 }
 .hero-cta {
   display: inline-block;
@@ -100,7 +100,7 @@
     align-items: center;
     max-width: 920px; /* match typical content width */
     /* small nudge to better align with page content (tweak as needed) */
-  transform: translateX(38px) translateY(-135px);
+  transform: translateX(53px) translateY(-135px);
   }
   .hero-cta {
     padding: 1rem 1.5rem;
@@ -114,7 +114,7 @@
     bottom: 20%;
   }
   .hero-cta-inner {
-    transform: translateX(26px) translateY(-135px);
+    transform: translateX(41px) translateY(-135px);
   }
 }
 
@@ -123,7 +123,7 @@
   .hero-cta-inner {
     display: flex;
     justify-content: flex-start;
-    transform: translateX(10px) translateY(-34px);
+    transform: translateX(25px) translateY(-34px);
   }
   .hero-cta {
     padding: 0.46rem 0.78rem;
