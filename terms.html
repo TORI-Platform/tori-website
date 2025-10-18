@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>TORÍ — Contact Us</title>
+    <title>TORÍ — Terms & Conditions</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -22,7 +22,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
     <script>
-      // set active nav link based on current path (filename)
       document.addEventListener('DOMContentLoaded', function () {
         try {
           var path = window.location.pathname.split('/').pop() || 'index.html';
@@ -41,7 +40,7 @@
       });
     </script>
   </head>
-  <body class="antialiased bg-body text-body font-body page-contact">
+  <body class="antialiased bg-body text-body font-body page-terms">
     <!-- Header / Navbar -->
     <section class="relative bg-white site-header" x-data="{ mobileNavOpen: false }" x-effect="document.body.style.overflow = mobileNavOpen ? 'hidden' : ''">
       <nav class="py-6">
@@ -140,184 +139,10 @@
       </div>
     </section>
 
-    <!-- Contact Hero -->
-    <main class="contact-hero py-12 px-4">
-      <div class="container mx-auto">
-        <div class="contact-grid">
-          <!-- Left: Contact Form Card -->
-          <section class="contact-form-card" aria-label="Contact form">
-            <form action="#" method="post" novalidate>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="form-field">
-                  <label class="contact-label">Full Name</label>
-                  <input type="text" class="contact-input" placeholder="Enter your full name" required />
-                </div>
-                <div class="form-field">
-                  <label class="contact-label">Email Address</label>
-                  <input type="email" class="contact-input" placeholder="Enter your email address" required />
-                </div>
-                <div class="form-field">
-                  <label class="contact-label">Phone Number</label>
-                  <div class="contact-phone">
-                     <input type="tel" class="contact-input phone" placeholder="Enter phone number" />
-                  </div>
-                </div>
-                <div class="form-field">
-                  <label class="contact-label">Subject</label>
-                  <input type="text" class="contact-input" placeholder="Enter a subject" />
-                </div>
-                <div class="form-field md:col-span-2">
-                  <label class="contact-label">Description</label>
-                  <textarea class="contact-textarea" rows="6" placeholder="Enter a detailed description"></textarea>
-                </div>
-                <div class="form-field md:col-span-2">
-                  <label class="contact-label">Attach a File</label>
-                  <label class="contact-file" tabindex="0">
-                    <input type="file" class="contact-file-input" hidden />
-                    <div class="file-inset">
-                      <img src="images/upload.svg" alt="" class="file-icon" aria-hidden="true" />
-                      <div class="file-text">
-                        Drop your file here to upload or select from storage
-                      </div>
-                      <div class="file-sub">Supported files: pdf, zip, png, jpg...</div>
-                    </div>
-                  </label>
-                </div>
-              </div>
-              <div class="form-actions">
-                <button type="submit" class="contact-submit">Submit</button>
-              </div>
-            </form>
-          </section>
-
-          
-          <aside class="contact-aside-card" aria-label="Contact information panel">
-            <img src="images/contact.svg" alt="Contact illustration" class="contact-aside-img" />
-            
-            <div class="contact-aside-header">
-            <div class="text-center">
-                <h2>Contact Us</h2>
-                <p>Have questions, feedback, or just want to say hi? We'd love to hear from you. Reach out and we'll get back to you as soon as we can.</p>
-                <div class="contact-social flex items-center justify-center gap-4 mt-4" role="list">
-                    <a class="social inline-flex items-center justify-center" href="https://www.linkedin.com/company/torí" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" role="listitem">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.2 2.4-2.5 5-2.5 5.4 0 6.4 3.6 6.4 8.3V24h-5V15.2c0-2.1 0-4.8-2.9-4.8s-3.3 2.3-3.3 4.6V24h-5V8z"/></svg>
-                    </a>
-                    <a class="social inline-flex items-center justify-center" href="#" aria-label="Instagram" role="listitem" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="currentColor"/></svg>
-                    </a>
-                    <a class="social inline-flex items-center justify-center" href="https://x.com/thetoriplatform" aria-label="X" target="_blank" rel="noopener noreferrer" role="listitem">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" stroke="#492C25" stroke-width="2" stroke-linecap="round" /></svg>
-                    </a>
-                    <a class="social inline-flex items-center justify-center" href="https://www.facebook.com/profile.php?id=61578825543092" aria-label="Facebook" target="_blank" rel="noopener noreferrer" role="listitem">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.87v-6.99h-2.8V12h2.8V9.8c0-2.76 1.64-4.28 4.14-4.28 1.2 0 2.47.21 2.47.21v2.7h-1.39c-1.37 0-1.8.85-1.8 1.72V12h3.06l-.49 2.88h-2.57v6.99A10 10 0 0 0 22 12z"/></svg>
-                    </a>
-                </div>
-            </div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </main>
-
-    <!-- FAQ Section -->
-    <section class="faq-section py-12 px-4" aria-label="Frequently Asked Questions">
-      <div class="container mx-auto">
-        <h2 class="faq-kicker text-2xl md:text-3xl font-extrabold mb-6" style="color:#492C25; letter-spacing:-0.02em;">FAQs</h2>
-        <div class="faq-layout">
-          <!-- Sidebar Categories -->
-          <aside class="faq-sidebar" aria-label="FAQ categories">
-            <ul class="faq-cats" role="tablist">
-              <li><button class="faq-cat active" data-category="general" role="tab" aria-selected="true">General questions</button></li>
-              <li><button class="faq-cat" data-category="read" role="tab" aria-selected="false">I'm here to read</button></li>
-              <li><button class="faq-cat" data-category="write" role="tab" aria-selected="false">I'm here to write</button></li>
-            </ul>
-          </aside>
-
-          <!-- Content -->
-          <div class="faq-content" role="tabpanel" aria-labelledby="General questions">
-            <h3 class="faq-heading">General questions</h3>
-            <!-- Search -->
-            <div class="faq-search-wrap">
-              <span class="faq-search-icon" aria-hidden="true">🔎</span>
-              <input id="faqSearch" type="search" class="faq-search" placeholder="Search for a question here..." aria-label="Search FAQs" />
-            </div>
-
-            <!-- Accordion List -->
-            <div id="faqList" class="faq-list" data-page-size="4">
-              <!-- General -->
-              <details class="faq-item" data-category="general" open>
-                <summary>When is TORÍ set to launch?</summary>
-                <div class="faq-answer">We're working hard to bring TORÍ to you soon. Join the waitlist to be the first to know when we launch.</div>
-              </details>
-              <details class="faq-item" data-category="general">
-                <summary>Can I download the app now?</summary>
-                <div class="faq-answer">Not yet. The app will be available on launch. In the meantime, stay updated by subscribing to our newsletter.</div>
-              </details>
-              <details class="faq-item" data-category="general">
-                <summary>Can I read on the website?</summary>
-                <div class="faq-answer">Yes. TORÍ offers a web experience so you can enjoy stories on any device without installing the app.</div>
-              </details>
-              <details class="faq-item" data-category="general">
-                <summary>Do I have to pay to access TORÍ?</summary>
-                <div class="faq-answer">TORÍ will include free and premium experiences. Pricing and plans will be announced closer to launch.</div>
-              </details>
-              <details class="faq-item" data-category="general">
-                <summary>Which countries will TORÍ be available in?</summary>
-                <div class="faq-answer">We aim to launch in multiple regions, starting with Africa and expanding globally. Availability will be announced at launch.</div>
-              </details>
-              <details class="faq-item" data-category="general">
-                <summary>How do I join the waitlist?</summary>
-                <div class="faq-answer">Click “Become a writer” in the navigation or use the waitlist form in the popup to subscribe.</div>
-              </details>
-
-              <!-- I'm here to read -->
-              <details class="faq-item" data-category="read">
-                <summary>What kinds of stories can I read?</summary>
-                <div class="faq-answer">From contemporary fiction to folklore, poetry, essays, and more—curated to celebrate African creativity.</div>
-              </details>
-              <details class="faq-item" data-category="read">
-                <summary>Will there be offline reading?</summary>
-                <div class="faq-answer">Offline reading is on our roadmap for the mobile app. We'll share more details post-launch.</div>
-              </details>
-              <details class="faq-item" data-category="read">
-                <summary>Can I follow my favorite writers?</summary>
-                <div class="faq-answer">Yes. You'll be able to follow creators and get notified when they publish new work.</div>
-              </details>
-              <details class="faq-item" data-category="read">
-                <summary>Is there a way to save stories?</summary>
-                <div class="faq-answer">You'll be able to bookmark stories to revisit them anytime.</div>
-              </details>
-
-              <!-- I'm here to write -->
-              <details class="faq-item" data-category="write">
-                <summary>How do I publish my work on TORÍ?</summary>
-                <div class="faq-answer">Join the waitlist as a writer. We'll invite early creators with instructions on how to publish.</div>
-              </details>
-              <details class="faq-item" data-category="write">
-                <summary>Do writers get paid?</summary>
-                <div class="faq-answer">We're exploring creator-friendly monetization. We'll announce revenue options as we roll out features.</div>
-              </details>
-              <details class="faq-item" data-category="write">
-                <summary>What formats can I publish?</summary>
-                <div class="faq-answer">Stories, poetry, essays, and serialized content. More formats will be added over time.</div>
-              </details>
-              <details class="faq-item" data-category="write">
-                <summary>Can I import my work from other platforms?</summary>
-                <div class="faq-answer">We'll provide simple tools and guides to help you bring your work to TORÍ.</div>
-              </details>
-            </div>
-
-            <!-- Pagination -->
-            <nav class="faq-pagination" aria-label="FAQ pagination">
-              <button class="pager-btn pager-prev" type="button" aria-label="Previous page">Prev</button>
-              <ul class="pager-list" id="faqPager"></ul>
-              <button class="pager-btn pager-next" type="button" aria-label="Next page">Next</button>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+      <h1 class="text-3xl font-extrabold mb-4" style="color:#492C25;">Terms & Conditions</h1>
+      </main>
 
     <!-- Footer -->
     <footer>
@@ -341,7 +166,7 @@
                   </ul>
                 </div>
                 <div class="w-1/2 xs:w-1/3 px-4 mb-8 xs:mb-0">
-                 <ul>
+                  <ul>
                     <li class="mb-3">
                       <a class="inline-block text-gray-600 hover:text-lime-500 font-medium" href="privacy.html">PRIVACY POLICY</a>
                     </li>
@@ -430,82 +255,5 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script>
-      // Lightweight FAQ filtering + pagination (no external deps)
-      document.addEventListener('DOMContentLoaded', function() {
-        const list = document.getElementById('faqList');
-        if (!list) return;
-        const pageSize = parseInt(list.getAttribute('data-page-size') || '4', 10);
-        const items = Array.from(list.querySelectorAll('.faq-item'));
-        const cats = Array.from(document.querySelectorAll('.faq-cat'));
-        const search = document.getElementById('faqSearch');
-        const pager = document.getElementById('faqPager');
-        const prevBtn = document.querySelector('.pager-prev');
-        const nextBtn = document.querySelector('.pager-next');
-        const heading = document.querySelector('.faq-heading');
-
-        let state = { category: 'general', query: '', page: 1, totalPages: 1 };
-
-        function getFiltered() {
-          const q = state.query.trim().toLowerCase();
-          return items.filter(d => {
-            const inCat = (d.getAttribute('data-category') === state.category);
-            if (!inCat) return false;
-            if (!q) return true;
-            const text = d.querySelector('summary')?.textContent?.toLowerCase() || '';
-            const ans = d.querySelector('.faq-answer')?.textContent?.toLowerCase() || '';
-            return text.includes(q) || ans.includes(q);
-          });
-        }
-
-        function renderPager(total) {
-          state.totalPages = Math.max(1, Math.ceil(total / pageSize));
-          state.page = Math.min(state.page, state.totalPages);
-          pager.innerHTML = '';
-          for (let i = 1; i <= state.totalPages; i++) {
-            const li = document.createElement('li');
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'pager-num' + (i === state.page ? ' active' : '');
-            btn.textContent = i;
-            btn.setAttribute('aria-label', 'Go to page ' + i);
-            btn.addEventListener('click', () => { state.page = i; update(); });
-            li.appendChild(btn);
-            pager.appendChild(li);
-          }
-          prevBtn.disabled = state.page <= 1;
-          nextBtn.disabled = state.page >= state.totalPages;
-        }
-
-        function update() {
-          const filtered = getFiltered();
-          renderPager(filtered.length);
-          // hide all
-          items.forEach(d => d.style.display = 'none');
-          // show current page selection
-          const start = (state.page - 1) * pageSize;
-          const pageItems = filtered.slice(start, start + pageSize);
-          pageItems.forEach(d => d.style.display = 'block');
-          // heading text
-          const map = { general: 'General questions', read: "I'm here to read", write: "I'm here to write" };
-          if (heading) heading.textContent = map[state.category] || 'FAQs';
-        }
-
-        cats.forEach(btn => {
-          btn.addEventListener('click', () => {
-            state.category = btn.getAttribute('data-category');
-            state.page = 1; // reset page
-            cats.forEach(b => b.classList.toggle('active', b === btn));
-            update();
-          });
-        });
-
-        search?.addEventListener('input', () => { state.query = search.value; state.page = 1; update(); });
-        prevBtn?.addEventListener('click', () => { if (state.page > 1) { state.page--; update(); } });
-        nextBtn?.addEventListener('click', () => { if (state.page < state.totalPages) { state.page++; update(); } });
-
-        update();
-      });
-    </script>
   </body>
 </html>

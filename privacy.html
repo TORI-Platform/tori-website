@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<title>TORÍ — Privacy Policy</title>
+
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+
+		<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+		<script>
+			// set active nav link based on current path (filename)
+			document.addEventListener('DOMContentLoaded', function () {
+				try {
+					var path = window.location.pathname.split('/').pop() || 'index.html';
+					var navLinks = document.querySelectorAll('.site-header nav a');
+					navLinks.forEach(function (a) {
+						var href = a.getAttribute('href') || '';
+						var hrefFile = href.split('/').pop() || '';
+						if (hrefFile === path || (hrefFile === '' && path === 'index.html')) {
+							a.classList.add('active');
+							a.setAttribute('aria-current', 'page');
+						}
+					});
+				} catch (e) {
+					console.warn('nav active script error', e);
+				}
+			});
+		</script>
+	</head>
+	<body class="antialiased bg-body text-body font-body page-privacy">
+		<!-- Header / Navbar -->
+		<section class="relative bg-white site-header" x-data="{ mobileNavOpen: false }" x-effect="document.body.style.overflow = mobileNavOpen ? 'hidden' : ''">
+			<nav class="py-6">
+				<div class="container mx-auto px-4">
+					<div class="relative flex items-center justify-between">
+						<a class="inline-block" href="#">
+							<img src="images/logo.svg" class="h-10 md:h-12 w-auto" alt="TORÍ logo" />
+						</a>
+						<button
+							class="md:hidden inline-flex items-center justify-center p-2 ml-auto hamburger-mobile-shift"
+							x-on:click="mobileNavOpen = !mobileNavOpen"
+							aria-label="Toggle navigation"
+						>
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+								<path d="M3 6h18M3 12h18M3 18h18" stroke="#000000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+						<ul class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:flex">
+							<li class="mr-8">
+								<a class="inline-block text-teal-900 hover:text-lime-500 font-medium" href="index.html">HOME</a>
+							</li>
+							<li class="mr-8">
+								<a class="inline-block text-teal-900 hover:text-lime-500 font-medium" href="about.html">ABOUT US</a>
+							</li>
+							<li class="mr-8">
+								<a class="inline-block text-teal-900 hover:text-lime-500 font-medium" href="contact.html">CONTACT US</a>
+							</li>
+							<li class="ml-8" style="position: relative; left: 195px;">
+								<a
+									class="inline-block px-6 py-2 text-white font-medium rounded-full transition"
+									href="#waitlistModal"
+									style="background-color: #B85025;"
+									data-bs-toggle="modal"
+									data-bs-target="#waitlistModal"
+									aria-controls="waitlistModal"
+								>Become a writter</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<br />
+				<hr />
+			</nav>
+
+			<div x-cloak>
+				<div
+					class="fixed inset-0 z-40 bg-black/40 transition-opacity"
+					x-show="mobileNavOpen"
+					x-transition.opacity
+					x-on:click="mobileNavOpen=false"
+					aria-hidden="true"
+				></div>
+
+				<aside
+					class="mobile-drawer fixed right-0 top-0 bottom-0 z-50 w-80 max-w-[85vw] bg-white shadow-xl flex flex-col"
+					x-show="mobileNavOpen"
+					x-transition:enter="transform transition ease-in-out duration-200"
+					x-transition:enter-start="translate-x-full"
+					x-transition:enter-end="translate-x-0"
+					x-transition:leave="transform transition ease-in-out duration-200"
+					x-transition:leave-start="translate-x-0"
+					x-transition:leave-end="translate-x-full"
+					role="dialog"
+					aria-modal="true"
+					:aria-hidden="(!mobileNavOpen).toString()"
+				>
+					<div class="flex items-center justify-between px-5 py-4 border-b">
+						<a class="inline-block" href="#">
+							<img src="images/logo.svg" class="h-10 w-auto" alt="TORÍ logo" />
+						</a>
+						<button class="p-2" x-on:click="mobileNavOpen=false" aria-label="Close menu">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="#1D1F1E" stroke-width="1.8" stroke-linecap="round"/></svg>
+						</button>
+					</div>
+
+					<nav class="p-5 overflow-y-auto">
+						<ul class="nav-list">
+							<li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="index.html">HOME</a></li>
+							<li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="about.html">ABOUT US</a></li>
+							<li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="contact.html">CONTACT US</a></li>
+						</ul>
+					</nav>
+
+					<div class="mt-auto p-5 border-t mb-20 md:mb-0">
+						<a
+							href="#waitlistModal"
+							class="inline-block w-full text-center px-4 py-2 rounded-full text-white font-medium"
+							style="background-color:#B85025;"
+							data-bs-toggle="modal"
+							data-bs-target="#waitlistModal"
+							aria-controls="waitlistModal"
+							x-on:click="mobileNavOpen=false"
+						>Become a writer</a>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+			<!-- Main Content -->
+			<main class="container mx-auto px-4 py-10 md:py-14">
+				<div class="max-w-3xl mx-auto">
+					<h1 class="text-center text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-wide uppercase mb-6" style="color:#492C25;"><b>Privacy Policy</b></h1>
+					<hr class="mb-8 border-t-2" style="border-color:#E6CDBF;" />
+
+					<section class="mb-8">
+						<p class="text-gray-700 leading-relaxed">
+							<strong>Your Privacy Matters at TORÍ!</strong> At TORÍ, we value your trust. This Privacy Policy explains what information we collect, how we use it, and how we protect it. By using TORÍ, you agree to this policy.
+						</p>
+					</section>
+
+					<section class="mb-8">
+						<h2 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-2" style="color:#492C25;">Information We Collect</h2>
+						<ul class="list-decimal pl-6 space-y-2 text-gray-700">
+							<li>
+								<strong>1. Personal Details:</strong> When you sign up, we may collect your name, email, and payment details (if you purchase stories).
+							</li>
+							<li>
+								<strong>2. Usage Data:</strong> We collect information about how you use TORÍ, such as the stories you read and device type.
+							</li>
+							<li>
+								<strong>3. Writer Information:</strong> If you join TORÍ as a writer, we may collect additional information related to your author profile.
+							</li>
+						</ul>
+					</section>
+
+					<section class="mb-8">
+						<h2 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-2" style="color:#492C25;">Children’s Privacy</h2>
+						<p class="text-gray-700 leading-relaxed">
+							TORÍ is not designed for children under 13. If we find that we have collected information from a child under this age, we will delete it immediately.
+						</p>
+					</section>
+
+					<section class="mb-8">
+						<h2 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-2" style="color:#492C25;">How We Use Your Information</h2>
+						<p class="text-gray-700 leading-relaxed mb-2">We use your information to:</p>
+						<ol class="list-decimal pl-6 space-y-2 text-gray-700">
+							<li>Provide you with access to African stories and authors.</li>
+							<li>Improve your recommendations and reading experience.</li>
+							<li>Process payments securely.</li>
+							<li>Send you updates about new features, stories, and events.</li>
+						</ol>
+					</section>
+
+					<section class="mb-8">
+						<h2 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-2" style="color:#492C25;">Sharing Your Information</h2>
+						<p class="text-gray-700 leading-relaxed mb-2">TORÍ does not sell your personal data. We may share limited information with:</p>
+						<ol class="list-decimal pl-6 space-y-2 text-gray-700">
+							<li>Payment providers to process transactions.</li>
+							<li>Analytics providers to help us improve TORÍ.</li>
+							<li>Authorities if required by law.</li>
+						</ol>
+					</section>
+
+					<section class="mb-8">
+						<h2 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-2" style="color:#492C25;">Data Security</h2>
+						<p class="text-gray-700 leading-relaxed">
+							We take steps to protect your data from unauthorized access or misuse. However, no online system is 100% secure, so please keep your account details safe.
+						</p>
+					</section>
+
+					<section class="mb-8">
+						<h2 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-2" style="color:#492C25;">Your Rights</h2>
+						<p class="text-gray-700 leading-relaxed mb-2">You have the right to:</p>
+						<ol class="list-decimal pl-6 space-y-2 text-gray-700">
+							<li>Update or correct your account details.</li>
+							<li>Request deletion of your account.</li>
+							<li>Opt out of marketing communications.</li>
+						</ol>
+					</section>
+
+					<section class="mb-8">
+						<h2 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-2" style="color:#492C25;">Update to Terms</h2>
+						<p class="text-gray-700 leading-relaxed">
+							TORÍ may update these Terms and Conditions occasionally. We will notify you of any major changes. Continued use of the platform means you accept the updated terms.
+						</p>
+					</section>
+
+					<section class="mb-2">
+						<h2 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-2" style="color:#492C25;">Policy Changes</h2>
+						<p class="text-gray-700 leading-relaxed">
+							We may update this Privacy Policy from time to time. If major changes are made, we will notify you.
+						</p>
+					</section>
+</div>
+			</main>
+
+		<!-- Footer -->
+		<footer>
+			<section class="relative py-12 lg:py-24 bg-orange-50 overflow-hidden site-footer">
+				<img class="absolute bottom-0 left-0" src="fauna-assets/footer/waves-lines-left-bottom.png" alt="" />
+				<div class="container px-4 mx-auto relative">
+					<div class="flex flex-wrap mb-16 -mx-4 footer-top">
+						<div class="w-full lg:w-2/12 xl:w-2/12 px-4 mb-16 lg:mb-0 logo-col">
+							<a class="inline-block mb-4" href="#!"><img src="images/logo.svg" alt="" /></a>
+						</div>
+						<div class="w-full md:w-7/12 lg:w-6/12 px-4 mb-16 lg:mb-0 links-col">
+							<div class="flex flex-wrap -mx-4">
+								<div class="w-1/2 xs:w-1/3 px-4 mb-8 xs:mb-0">
+									<ul>
+										<li class="mb-3">
+											<a class="inline-block text-gray-600 hover:text-lime-500 font-medium" href="about.html">ABOUT US</a>
+										</li>
+										<li class="mb-3">
+											<a class="inline-block text-gray-600 hover:text-lime-500 font-medium" href="contact.html">CONTACT US</a>
+										</li>
+									</ul>
+								</div>
+								<div class="w-1/2 xs:w-1/3 px-4 mb-8 xs:mb-0">
+								 <ul>
+										<li class="mb-3">
+											<a class="inline-block text-gray-600 hover:text-lime-500 font-medium" href="privacy.html">PRIVACY POLICY</a>
+										</li>
+										<li class="mb-3">
+											<a class="inline-block text-gray-600 hover:text-lime-500 font-medium" href="terms.html">TERMS & CONDITIONS</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr />
+					<br />
+					<div class="flex flex-wrap -mb-3 justify-between footer-bottom">
+						<div class="footer-social" role="list">
+							<a class="social-link" href="https://www.linkedin.com/company/torí" aria-label="LinkedIn" role="listitem" target="_blank" rel="noopener noreferrer">
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.2 2.4-2.5 5-2.5 5.4 0 6.4 3.6 6.4 8.3V24h-5V15.2c0-2.1 0-4.8-2.9-4.8s-3.3 2.3-3.3 4.6V24h-5V8z" /></svg>
+							</a>
+							<a class="social-link" href="#!" aria-label="Instagram" role="listitem">
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="currentColor"/></svg>
+							</a>
+							<a class="social-link" href="https://x.com/thetoriplatform" aria-label="X" role="listitem" target="_blank" rel="noopener noreferrer">
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" stroke="#492C25" stroke-width="2" stroke-linecap="round" /></svg>
+							</a>
+							<a class="social-link" href="https://www.facebook.com/profile.php?id=61578825543092" aria-label="Facebook" role="listitem" target="_blank" rel="noopener noreferrer">
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.87v-6.99h-2.8V12h2.8V9.8c0-2.76 1.64-4.28 4.14-4.28 1.2 0 2.47.21 2.47.21v2.7h-1.39c-1.37 0-1.8.85-1.8 1.72V12h3.06l-.49 2.88h-2.57v6.99A10 10 0 0 0 22 12z" /></svg>
+							</a>
+						</div>
+
+						<p class="text-sm text-gray-500 mb-3 footer-copy w-full text-center mt-3">
+							TORÍ © 2025, All rights reserved.
+						</p>
+					</div>
+				</div>
+			</section>
+		</footer>
+
+		<!-- Waitlist Modal -->
+		<div class="modal fade" id="waitlistModal" tabindex="-1" aria-labelledby="waitlistModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body p-0" style="background-color:#FDF7F2;">
+						<section class="email-list-section" style="background-color:white;">
+							<div class="container mx-auto px-4 text-center py-6">
+								<img src="images/popup.svg" alt="Subscribe to our Newsletter" class="inline-block mb-4 w-full max-w-xl" />
+								<br />
+								<br />
+								<h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:45px; font-weight:850; color:#492C25; margin-bottom:20px;">Join Our Waitlist</h1>
+								<p class="mb-6 text-gray-700 font-medium text-sm md:text-base">
+									By joining the waitlist, you will also subscribe to our newsletter to receive exclusive TORÍ updates, stories, and early access invites. You can unsubscribe anytime.
+								</p>
+								<form class="max-w-2xl mx-auto" action="#" method="POST">
+									<div class="email-field-wrapper">
+										<div class="email-field">
+											<input type="email" name="email" placeholder="Enter your email address" required class="email-input" style="font-size:16px;" aria-label="Email address" />
+											<button type="submit" class="email-btn" style="font-size:15px;">Notify me</button>
+										</div>
+									</div>
+								</form>
+								<div class="flex items-center justify-center gap-4 mt-6 mb-2">
+									<a href="https://www.linkedin.com/company/torí" aria-label="LinkedIn" class="w-10 h-10 flex items-center justify-center rounded-full border border-[#492C25]/20 text-[#492C25] hover:bg-[#492C25] hover:text-white transition" target="_blank" rel="noopener noreferrer">
+										<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.2 2.4-2.5 5-2.5 5.4 0 6.4 3.6 6.4 8.3V24h-5V15.2c0-2.1 0-4.8-2.9-4.8s-3.3 2.3-3.3 4.6V24h-5V8z" /></svg>
+									</a>
+									<a href="#" aria-label="Instagram" class="w-10 h-10 flex items-center justify-center rounded-full border border-[#492C25]/20 text-[#492C25] hover:bg-[#492C25] hover:text-white transition" target="_blank" rel="noopener noreferrer">
+										<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" /></svg>
+									</a>
+									<a href="https://x.com/thetoriplatform" aria-label="X" class="w-10 h-10 flex items-center justify-center rounded-full border border-[#492C25]/20 text-[#492C25] hover:bg-[#492C25] hover:text-white transition" target="_blank" rel="noopener noreferrer">
+										<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+									</a>
+									<a href="https://www.facebook.com/profile.php?id=61578825543092" aria-label="Facebook" class="w-10 h-10 flex items-center justify-center rounded-full border border-[#492C25]/20 text-[#492C25] hover:bg-[#492C25] hover:text-white transition" target="_blank" rel="noopener noreferrer">
+										<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.87v-6.99h-2.8V12h2.8V9.8c0-2.76 1.64-4.28 4.14-4.28 1.2 0 2.47.21 2.47.21v2.7h-1.39c-1.37 0-1.8.85-1.8 1.72V12h3.06l-.49 2.88h-2.57v6.99A10 10 0 0 0 22 12z" /></svg>
+									</a>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>
