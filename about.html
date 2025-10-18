@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<title>TORÍ — About</title>
+
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Bootstrap 5 CSS (load before Tailwind so Tailwind utilities keep priority for shared class names like .container) -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+
+		<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js" defer></script>
+		<script>
+			// set active nav link based on current path (filename)
+			document.addEventListener('DOMContentLoaded', function () {
+				try {
+					var path = window.location.pathname.split('/').pop() || 'index.html';
+					var navLinks = document.querySelectorAll('.site-header nav a');
+					navLinks.forEach(function (a) {
+						var href = a.getAttribute('href') || '';
+						// normalize: if href is a full URL, extract the filename
+						var hrefFile = href.split('/').pop() || '';
+						if (hrefFile === path || (hrefFile === '' && path === 'index.html')) {
+							a.classList.add('active');
+							a.setAttribute('aria-current', 'page');
+						}
+					});
+				} catch (e) {
+					console.warn('nav active script error', e);
+				}
+			});
+		</script>
+	</head>
+	<body class="antialiased bg-body text-body font-body page-about">
+		<!-- Header / Navbar (imported from index) -->
+		<section class="relative bg-white site-header" x-data="{ mobileNavOpen: false }" x-effect="document.body.style.overflow = mobileNavOpen ? 'hidden' : ''">
+			<nav class="py-6">
+				<div class="container mx-auto px-4">
+					<div class="relative flex items-center justify-between">
+						<a class="inline-block" href="#">
+							<img src="images/logo.svg" class="h-10 md:h-12 w-auto" alt="TORÍ logo" />
+						</a>
+						<!-- Mobile hamburger: visible on small screens, hidden on md+ -->
+						<button
+							class="md:hidden inline-flex items-center justify-center p-2 ml-auto hamburger-mobile-shift"
+							x-on:click="mobileNavOpen = !mobileNavOpen"
+							aria-label="Toggle navigation"
+						>
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+								<path d="M3 6h18M3 12h18M3 18h18" stroke="#000000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+						<ul class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:flex">
+							<li class="mr-8">
+								<a class="inline-block text-teal-900 hover:text-lime-500 font-medium" href="index.html">HOME</a>
+							</li>
+							<li class="mr-8">
+								<a class="inline-block text-teal-900 hover:text-lime-500 font-medium" href="about.html">ABOUT US</a>
+							</li>
+							<li class="mr-8">
+								<a class="inline-block text-teal-900 hover:text-lime-500 font-medium" href="contact.html">CONTACT US</a>
+							</li>
+							<li class="ml-8" style="position: relative; left: 195px;">
+								<a
+									class="inline-block px-6 py-2 text-white font-medium rounded-full transition"
+									href="#waitlistModal"
+									style="background-color: #B85025;"
+									data-bs-toggle="modal"
+									data-bs-target="#waitlistModal"
+									aria-controls="waitlistModal"
+								>Become a writter</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<br />
+				<hr />
+			</nav>
+              <div x-cloak>
+				<!-- Backdrop -->
+				<div
+					class="fixed inset-0 z-40 bg-black/40 transition-opacity"
+					x-show="mobileNavOpen"
+					x-transition.opacity
+					x-on:click="mobileNavOpen=false"
+					aria-hidden="true"
+				></div>
+
+				<!-- Drawer panel -->
+				<aside
+					class="mobile-drawer fixed right-0 top-0 bottom-0 z-50 w-80 max-w-[85vw] bg-white shadow-xl flex flex-col"
+					x-show="mobileNavOpen"
+					x-transition:enter="transform transition ease-in-out duration-200"
+					x-transition:enter-start="translate-x-full"
+					x-transition:enter-end="translate-x-0"
+					x-transition:leave="transform transition ease-in-out duration-200"
+					x-transition:leave-start="translate-x-0"
+					x-transition:leave-end="translate-x-full"
+					role="dialog"
+					aria-modal="true"
+					:aria-hidden="(!mobileNavOpen).toString()"
+				>
+					<div class="flex items-center justify-between px-5 py-4 border-b">
+						<a class="inline-block" href="#">
+							<img src="images/logo.svg" class="h-10 w-auto" alt="TORÍ logo" />
+						</a>
+						<button class="p-2" x-on:click="mobileNavOpen=false" aria-label="Close menu">
+							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="#1D1F1E" stroke-width="1.8" stroke-linecap="round"/></svg>
+						</button>
+					</div>
+
+					<nav class="p-5 overflow-y-auto">
+						<ul class="nav-list">
+							<li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="index.html">HOME</a></li>
+							<li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="about.html">ABOUT US</a></li>
+							<li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="contact.html">CONTACT US</a></li>
+						</ul>
+					</nav>
+
+					<div class="mt-auto p-5 border-t mb-20 md:mb-0">
+						<a
+							href="#waitlistModal"
+							class="inline-block w-full text-center px-4 py-2 rounded-full text-white font-medium"
+							style="background-color:#B85025;"
+							data-bs-toggle="modal"
+							data-bs-target="#waitlistModal"
+							aria-controls="waitlistModal"
+							x-on:click="mobileNavOpen=false"
+						>Become a writer</a>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+		<!-- Hero (About) - mirrors index hero with about artwork -->
+		<div class="relative pt-0 pb-6 sm:pb-8 lg:pt-0 lg:pb-12">
+			<!-- DESKTOP/TABLET HERO (md and up) -->
+			<div class="hidden md:block">
+				<div class="relative w-full hero-wrap">
+					<picture>
+						<source srcset="images/about-bg.svg" type="image/svg+xml" />
+						<img
+							src="images/about-bg.svg"
+							alt="About TORÍ hero"
+							loading="lazy"
+							class="hero-img w-full"
+						/>
+					</picture>
+				</div>
+			</div>
+
+			<!-- MOBILE HERO (below md) -->
+			<div class="block md:hidden">
+				<div class="relative w-full hero-wrap">
+					<picture>
+						<source srcset="images/about-bg2.svg" type="image/svg+xml" />
+						<img
+							src="images/about-bg2.svg"
+							alt="About TORÍ hero (mobile)"
+							loading="lazy"
+							class="hero-img w-full"
+						/>
+					</picture>
+				</div>
+			</div>
+		</div>
+
+        <!-- Section2 (DESKTOP) -->
+  <section class="hidden md:flex items-center justify-between py-12 px-4 bg-gray-100" aria-label="Image and text block - desktop">
+    <!-- Image aligned to the left -->
+    <div class="w-1/2">
+      <img src="images/about-sec1.svg" alt="Example Image" class="w-full h-auto" />
+    </div>
+
+		<!-- Text aligned and shifted left under decorative image (desktop) -->
+		<div class="w-1/2">
+			<div class="about-mv-wrap">
+				<img src="images/bw2.svg" class="block mb-4" height="100" width="auto" alt="Decorative" />
+				<h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:45px; font-weight:850; color:#492C25; margin-bottom:20px;">
+				 Our mission
+				</h1>
+				<h2 class="text-md md:text-md md:text-md leading-relaxed" style="font-weight:400;">
+			To amplify African voices by making storytelling accessible, immersive, and community-driven across generations and borders.   
+	  </h2>
+				<br />
+				<h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:45px; font-weight:850; color:#492C25; margin-bottom:20px;">
+				 Our Vision
+				</h1>
+				<h2 class="text-md md:text-md md:text-md leading-relaxed" style="font-weight:400;">
+		 To be the home of African storytelling, preserving diverse voices, empowering creators, and reshaping how African stories are experienced globally.
+	    </h2>
+			</div>
+		</div>
+  </section>
+
+	
+
+  <!-- Section2 (MOBILE ONLY) -->
+  <section class="block md:hidden py-8 px-4 bg-gray-100" aria-label="Image and text block - mobile">
+    <div class="max-w-xl mx-auto text-center">
+      <!-- Image (stacked, full width) -->
+      <img src="images/about-sec1.svg" alt="Example Image" class="w-full h-auto mb-6" />
+
+      <!-- Decorative/heading image -->
+      <img src="images/bw2.svg" alt="Example Text" class="inline-block mb-4 w-3/4 max-w-xs" />
+
+      <!-- Mobile-optimized heading -->
+      <h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:28px; font-weight:800; color:#492C25; margin-bottom:12px; line-height:1.15;">
+        Our mission
+      </h1>
+
+      <!-- Mobile-optimized body -->
+      <p class="text-base leading-relaxed text-gray-700" style="font-weight:300;">
+    To amplify African voices by making storytelling accessible, immersive, and community-driven across generations and borders.   
+	</p>
+</br>
+<h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:28px; font-weight:800; color:#492C25; margin-bottom:12px; line-height:1.15;">
+        Our Vision
+      </h1>
+
+      <!-- Mobile-optimized body -->
+      <p class="text-base leading-relaxed text-gray-700" style="font-weight:300;">
+    To be the home of African storytelling, preserving diverse voices, empowering creators, and reshaping how African stories are experienced globally.
+	</p>
+	
+    </div>
+  </section>
+
+  <!-- Readers Section -->
+		<section class="py-12 px-4 bg-white" aria-label="Readers section">
+		<div class="max-w-5xl mx-auto">
+			<!-- Header image acting as section title -->
+				<img src="images/Readers.svg" alt="Readers" class="block mx-auto mb-6 w-full max-w-md h-auto readers-heading" />
+
+			<p class="text-base leading-relaxed text-gray-700" style="font-weight:300;">
+			TORÍ is more than a platform. It’s a living library of African creativity. Lose yourself in powerful stories, share your own perspective, or find your people in a space that honors culture, craft, and connection.	
+			</p>
+
+			<!-- Readers grid: three boxes -->
+			<div class="readers-grid mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
+				<!-- Box 1 -->
+				<div class="reader-card h-full text-center flex flex-col items-center">
+					<div class="reader-icon-wrap"><img src="images/grid1.svg" alt="Passionate Readers" class="reader-icon" /></div>
+					<h3 class="reader-card-title">Passionate Readers</h3>
+					<p class="reader-card-text">Discover authentic stories that speak to your soul. Explore narratives that celebrate African culture, identity, and experiences.</p>
+				</div>
+
+				<!-- Box 2 -->
+				<div class="reader-card h-full text-center flex flex-col items-center">
+					<div class="reader-icon-wrap"><img src="images/grid2.svg" alt="Writers &amp; Storytellers" class="reader-icon" /></div>
+					<h3 class="reader-card-title">Writers &amp; Storytellers</h3>
+					<p class="reader-card-text">Share your voice and connect with readers who appreciate authentic African narratives. Get the recognition and support you deserve.</p>
+				</div>
+
+				<!-- Box 3 -->
+				<div class="reader-card h-full text-center flex flex-col items-center">
+					<div class="reader-icon-wrap"><img src="images/grid3.svg" alt="Cultural Enthusiasts" class="reader-icon" /></div>
+					<h3 class="reader-card-title">Cultural Enthusiasts</h3>
+					<p class="reader-card-text">Seeking deeper connection to African heritage? Find stories that bridge cultures and celebrate the richness of our shared humanity.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ Section (above footer) -->
+	<section class="faq-section py-12 px-4" aria-label="Frequently Asked Questions">
+		<div class="container mx-auto">
+			<h2 class="faq-kicker text-2xl md:text-3xl font-extrabold mb-6" style="color:#492C25; letter-spacing:-0.02em;">FAQs</h2>
+			<div class="faq-layout">
+				<!-- Sidebar Categories -->
+				<aside class="faq-sidebar" aria-label="FAQ categories">
+					<ul class="faq-cats" role="tablist">
+						<li><button class="faq-cat active" data-category="general" role="tab" aria-selected="true">General questions</button></li>
+						<li><button class="faq-cat" data-category="read" role="tab" aria-selected="false">I'm here to read</button></li>
+						<li><button class="faq-cat" data-category="write" role="tab" aria-selected="false">I'm here to write</button></li>
+					</ul>
+				</aside>
+
+				<!-- Content -->
+				<div class="faq-content" role="tabpanel" aria-labelledby="General questions">
+					<h3 class="faq-heading">General questions</h3>
+					<!-- Search -->
+					<div class="faq-search-wrap">
+						<span class="faq-search-icon" aria-hidden="true">🔎</span>
+						<input id="faqSearch" type="search" class="faq-search" placeholder="Search for a question here..." aria-label="Search FAQs" />
+					</div>
+
+					<!-- Accordion List -->
+					<div id="faqList" class="faq-list" data-page-size="4">
+						<!-- General -->
+						<details class="faq-item" data-category="general" open>
+							<summary>When is TORÍ set to launch?</summary>
+							<div class="faq-answer">We're working hard to bring TORÍ to you soon. Join the waitlist to be the first to know when we launch.</div>
+						</details>
+						<details class="faq-item" data-category="general">
+							<summary>Can I download the app now?</summary>
+							<div class="faq-answer">Not yet. The app will be available on launch. In the meantime, stay updated by subscribing to our newsletter.</div>
+						</details>
+						<details class="faq-item" data-category="general">
+							<summary>Can I read on the website?</summary>
+							<div class="faq-answer">Yes. TORÍ offers a web experience so you can enjoy stories on any device without installing the app.</div>
+						</details>
+						<details class="faq-item" data-category="general">
+							<summary>Do I have to pay to access TORÍ?</summary>
+							<div class="faq-answer">TORÍ will include free and premium experiences. Pricing and plans will be announced closer to launch.</div>
+						</details>
+						<details class="faq-item" data-category="general">
+							<summary>Which countries will TORÍ be available in?</summary>
+							<div class="faq-answer">We aim to launch in multiple regions, starting with Africa and expanding globally. Availability will be announced at launch.</div>
+						</details>
+						<details class="faq-item" data-category="general">
+							<summary>How do I join the waitlist?</summary>
+							<div class="faq-answer">Click “Become a writer” in the navigation or use the waitlist form in the popup to subscribe.</div>
+						</details>
+
+						<!-- I'm here to read -->
+						<details class="faq-item" data-category="read">
+							<summary>What kinds of stories can I read?</summary>
+							<div class="faq-answer">From contemporary fiction to folklore, poetry, essays, and more—curated to celebrate African creativity.</div>
+						</details>
+						<details class="faq-item" data-category="read">
+							<summary>Will there be offline reading?</summary>
+							<div class="faq-answer">Offline reading is on our roadmap for the mobile app. We'll share more details post-launch.</div>
+						</details>
+						<details class="faq-item" data-category="read">
+							<summary>Can I follow my favorite writers?</summary>
+							<div class="faq-answer">Yes. You'll be able to follow creators and get notified when they publish new work.</div>
+						</details>
+						<details class="faq-item" data-category="read">
+							<summary>Is there a way to save stories?</summary>
+							<div class="faq-answer">You'll be able to bookmark stories to revisit them anytime.</div>
+						</details>
+
+						<!-- I'm here to write -->
+						<details class="faq-item" data-category="write">
+							<summary>How do I publish my work on TORÍ?</summary>
+							<div class="faq-answer">Join the waitlist as a writer. We'll invite early creators with instructions on how to publish.</div>
+						</details>
+						<details class="faq-item" data-category="write">
+							<summary>Do writers get paid?</summary>
+							<div class="faq-answer">We're exploring creator-friendly monetization. We'll announce revenue options as we roll out features.</div>
+						</details>
+						<details class="faq-item" data-category="write">
+							<summary>What formats can I publish?</summary>
+							<div class="faq-answer">Stories, poetry, essays, and serialized content. More formats will be added over time.</div>
+						</details>
+						<details class="faq-item" data-category="write">
+							<summary>Can I import my work from other platforms?</summary>
+							<div class="faq-answer">We'll provide simple tools and guides to help you bring your work to TORÍ.</div>
+						</details>
+					</div>
+
+					<!-- Pagination -->
+					<nav class="faq-pagination" aria-label="FAQ pagination">
+						<button class="pager-btn pager-prev" type="button" aria-label="Previous page">Prev</button>
+						<ul class="pager-list" id="faqPager"></ul>
+						<button class="pager-btn pager-next" type="button" aria-label="Next page">Next</button>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	
+
+		<!-- Footer -->
+		<footer>
+			<section class="relative py-12 lg:py-24 bg-orange-50 overflow-hidden site-footer">
+				<img class="absolute bottom-0 left-0" src="fauna-assets/footer/waves-lines-left-bottom.png" alt="" />
+				<div class="container px-4 mx-auto relative">
+					<div class="flex flex-wrap mb-16 -mx-4 footer-top">
+						<div class="w-full lg:w-2/12 xl:w-2/12 px-4 mb-16 lg:mb-0 logo-col">
+							<a class="inline-block mb-4" href="#!"><img src="images/logo.svg" alt="" /></a>
+						</div>
+						<div class="w-full md:w-7/12 lg:w-6/12 px-4 mb-16 lg:mb-0 links-col">
+							<div class="flex flex-wrap -mx-4">
+								<div class="w-1/2 xs:w-1/3 px-4 mb-8 xs:mb-0">
+									<h3 class="mb-6">ABOUT US</h3>
+									<ul>
+										<li class="mb-4">
+											<a class="inline-block text-gray-600 hover:text-lime-500 font-medium" href="#!">CONTACT US</a>
+										</li>
+									</ul>
+								</div>
+								<div class="w-1/2 xs:w-1/3 px-4 mb-8 xs:mb-0">
+									<h3 class="mb-6">PRIVACY POLICY</h3>
+									<ul>
+										<li class="mb-4">
+											<a class="inline-block text-gray-600 hover:text-lime-500 font-medium" href="#!">TERMS & CONDITIONS</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr />
+					<br />
+					<div class="flex flex-wrap -mb-3 justify-between footer-bottom">
+						<div class="footer-social" role="list">
+							<!-- LinkedIn -->
+							<a class="social-link" href="https://www.linkedin.com/company/torí" aria-label="LinkedIn" role="listitem" target="_blank" rel="noopener noreferrer">
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.2 2.4-2.5 5-2.5 5.4 0 6.4 3.6 6.4 8.3V24h-5V15.2c0-2.1 0-4.8-2.9-4.8s-3.3 2.3-3.3 4.6V24h-5V8z" />
+								</svg>
+							</a>
+							<!-- Instagram -->
+							<a class="social-link" href="#!" aria-label="Instagram" role="listitem">
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" fill="currentColor"/>
+								</svg>
+							</a>
+							<!-- X (Twitter) -->
+							<a class="social-link" href="https://x.com/thetoriplatform" aria-label="X" role="listitem" target="_blank" rel="noopener noreferrer">
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path d="M4 4l16 16M20 4L4 20" stroke="#492C25" stroke-width="2" stroke-linecap="round" />
+								</svg>
+							</a>
+							<!-- Facebook -->
+							<a class="social-link" href="https://www.facebook.com/profile.php?id=61578825543092" aria-label="Facebook" role="listitem" target="_blank" rel="noopener noreferrer">
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path d="M22 12a10 10 0 1 0-11.6 9.87v-6.99h-2.8V12h2.8V9.8c0-2.76 1.64-4.28 4.14-4.28 1.2 0 2.47.21 2.47.21v2.7h-1.39c-1.37 0-1.8.85-1.8 1.72V12h3.06l-.49 2.88h-2.57v6.99A10 10 0 0 0 22 12z" />
+								</svg>
+							</a>
+						</div>
+
+						<p class="text-sm text-gray-500 mb-3 footer-copy w-full text-center mt-3">
+							TORÍ © 2025, All rights reserved.
+						</p>
+					</div>
+				</div>
+			</section>
+		</footer>
+
+		<!-- Waitlist Modal (to match header CTA target) -->
+		<div class="modal fade" id="waitlistModal" tabindex="-1" aria-labelledby="waitlistModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body p-0" style="background-color:#FDF7F2;">
+						<section class="email-list-section" style="background-color:white;">
+							<div class="container mx-auto px-4 text-center py-6">
+								<img src="images/popup.svg" alt="Subscribe to our Newsletter" class="inline-block mb-4 w-full max-w-xl" />
+								<br />
+								<br />
+								<h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:45px; font-weight:850; color:#492C25; margin-bottom:20px;">Join Our Waitlist</h1>
+								<p class="mb-6 text-gray-700 font-medium text-sm md:text-base">
+									By joining the waitlist, you will also subscribe to our newsletter to receive exclusive TORÍ updates, stories, and early access invites. You can unsubscribe anytime.
+								</p>
+								<form class="max-w-2xl mx-auto" action="#" method="POST">
+									<div class="email-field-wrapper">
+										<div class="email-field">
+											<input type="email" name="email" placeholder="Enter your email address" required class="email-input" style="font-size:16px;" aria-label="Email address" />
+											<button type="submit" class="email-btn" style="font-size:15px;">Notify me</button>
+										</div>
+									</div>
+								</form>
+								<div class="flex items-center justify-center gap-4 mt-6 mb-2">
+									<a href="https://www.linkedin.com/company/torí" aria-label="LinkedIn" class="w-10 h-10 flex items-center justify-center rounded-full border border-[#492C25]/20 text-[#492C25] hover:bg-[#492C25] hover:text-white transition" target="_blank" rel="noopener noreferrer">
+										<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.2 2.4-2.5 5-2.5 5.4 0 6.4 3.6 6.4 8.3V24h-5V15.2c0-2.1 0-4.8-2.9-4.8s-3.3 2.3-3.3 4.6V24h-5V8z" /></svg>
+									</a>
+									<a href="#" aria-label="Instagram" class="w-10 h-10 flex items-center justify-center rounded-full border border-[#492C25]/20 text-[#492C25] hover:bg-[#492C25] hover:text-white transition" target="_blank" rel="noopener noreferrer">
+										<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.8 2H16.2C19.4 2 22 4.6 22 7.8V16.2C22 17.7383 21.3889 19.2135 20.3012 20.3012C19.2135 21.3889 17.7383 22 16.2 22H7.8C4.6 22 2 19.4 2 16.2V7.8C2 6.26174 2.61107 4.78649 3.69878 3.69878C4.78649 2.61107 6.26174 2 7.8 2ZM7.6 4C6.64522 4 5.72955 4.37928 5.05442 5.05442C4.37928 5.72955 4 6.64522 4 7.6V16.4C4 18.39 5.61 20 7.6 20H16.4C17.3548 20 18.2705 19.6207 18.9456 18.9456C19.6207 18.2705 20 17.3548 20 16.4V7.6C20 5.61 18.39 4 16.4 4H7.6ZM17.25 5.5C17.5815 5.5 17.8995 5.6317 18.1339 5.86612C18.3683 6.10054 18.5 6.41848 18.5 6.75C18.5 7.08152 18.3683 7.39946 18.1339 7.63388C17.8995 7.8683 17.5815 8 17.25 8C16.9185 8 16.6005 7.8683 16.3661 7.63388C16.1317 7.39946 16 7.08152 16 6.75C16 6.41848 16.1317 6.10054 16.3661 5.86612C16.6005 5.6317 16.9185 5.5 17.25 5.5ZM12 7C13.3261 7 14.5979 7.52678 15.5355 8.46447C16.4732 9.40215 17 10.6739 17 12C17 13.3261 16.4732 14.5979 15.5355 15.5355C14.5979 16.4732 13.3261 17 12 17C10.6739 17 9.40215 16.4732 8.46447 15.5355C7.52678 14.5979 7 13.3261 7 12C7 10.6739 7.52678 9.40215 8.46447 8.46447C9.40215 7.52678 10.6739 7 12 7ZM12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9Z" /></svg>
+									</a>
+									<a href="https://x.com/thetoriplatform" aria-label="X" class="w-10 h-10 flex items-center justify-center rounded-full border border-[#492C25]/20 text-[#492C25] hover:bg-[#492C25] hover:text-white transition" target="_blank" rel="noopener noreferrer">
+										<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+									</a>
+									<a href="https://www.facebook.com/profile.php?id=61578825543092" aria-label="Facebook" class="w-10 h-10 flex items-center justify-center rounded-full border border-[#492C25]/20 text-[#492C25] hover:bg-[#492C25] hover:text-white transition" target="_blank" rel="noopener noreferrer">
+										<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.87v-6.99h-2.8V12h2.8V9.8c0-2.76 1.64-4.28 4.14-4.28 1.2 0 2.47.21 2.47.21v2.7h-1.39c-1.37 0-1.8.85-1.8 1.72V12h3.06l-.49 2.88h-2.57v6.99A10 10 0 0 0 22 12z" /></svg>
+									</a>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap 5 Bundle with Popper -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"
+		></script>
+
+		<script>
+			// Lightweight FAQ filtering + pagination (no external deps)
+			document.addEventListener('DOMContentLoaded', function() {
+				const list = document.getElementById('faqList');
+				if (!list) return;
+				const pageSize = parseInt(list.getAttribute('data-page-size') || '4', 10);
+				const items = Array.from(list.querySelectorAll('.faq-item'));
+				const cats = Array.from(document.querySelectorAll('.faq-cat'));
+				const search = document.getElementById('faqSearch');
+				const pager = document.getElementById('faqPager');
+				const prevBtn = document.querySelector('.pager-prev');
+				const nextBtn = document.querySelector('.pager-next');
+				const heading = document.querySelector('.faq-heading');
+
+				let state = { category: 'general', query: '', page: 1, totalPages: 1 };
+
+				function getFiltered() {
+					const q = state.query.trim().toLowerCase();
+					return items.filter(d => {
+						const inCat = (d.getAttribute('data-category') === state.category);
+						if (!inCat) return false;
+						if (!q) return true;
+						const text = d.querySelector('summary')?.textContent?.toLowerCase() || '';
+						const ans = d.querySelector('.faq-answer')?.textContent?.toLowerCase() || '';
+						return text.includes(q) || ans.includes(q);
+					});
+				}
+
+				function renderPager(total) {
+					state.totalPages = Math.max(1, Math.ceil(total / pageSize));
+					state.page = Math.min(state.page, state.totalPages);
+					pager.innerHTML = '';
+					for (let i = 1; i <= state.totalPages; i++) {
+						const li = document.createElement('li');
+						const btn = document.createElement('button');
+						btn.type = 'button';
+						btn.className = 'pager-num' + (i === state.page ? ' active' : '');
+						btn.textContent = i;
+						btn.setAttribute('aria-label', 'Go to page ' + i);
+						btn.addEventListener('click', () => { state.page = i; update(); });
+						li.appendChild(btn);
+						pager.appendChild(li);
+					}
+					prevBtn.disabled = state.page <= 1;
+					nextBtn.disabled = state.page >= state.totalPages;
+				}
+
+				function update() {
+					const filtered = getFiltered();
+					renderPager(filtered.length);
+					// hide all
+					items.forEach(d => d.style.display = 'none');
+					// show current page selection
+					const start = (state.page - 1) * pageSize;
+					const pageItems = filtered.slice(start, start + pageSize);
+					pageItems.forEach(d => d.style.display = 'block');
+					// heading text
+					const map = { general: 'General questions', read: "I'm here to read", write: "I'm here to write" };
+					if (heading) heading.textContent = map[state.category] || 'FAQs';
+				}
+
+				cats.forEach(btn => {
+					btn.addEventListener('click', () => {
+						state.category = btn.getAttribute('data-category');
+						state.page = 1; // reset page
+						cats.forEach(b => b.classList.toggle('active', b === btn));
+						update();
+					});
+				});
+
+				search?.addEventListener('input', () => { state.query = search.value; state.page = 1; update(); });
+				prevBtn?.addEventListener('click', () => { if (state.page > 1) { state.page--; update(); } });
+				nextBtn?.addEventListener('click', () => { if (state.page < state.totalPages) { state.page++; update(); } });
+
+				update();
+			});
+		</script>
+	</body>
+</html>
+

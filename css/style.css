@@ -119,10 +119,15 @@
 }
 
 @media (max-width: 640px) {
-  /* center on small screens */
+  /* mobile: align CTA to the left and make it a bit smaller */
   .hero-cta-inner {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    transform: translateX(10px) translateY(-34px);
+  }
+  .hero-cta {
+    padding: 0.46rem 0.78rem;
+    font-size: 0.85rem;
   }
 }
 @media (min-width: 1280px) {
@@ -142,11 +147,128 @@
   }
 }
 
+/* Page-specific overrides for About: make hero full-bleed and reduce top/side padding */
+.page-about .hero-wrap { padding-top: 0; }
+.page-about .hero-img {
+  max-width: 100%; /* full width edge-to-edge */
+  margin: 0;       /* remove auto centering margin */
+}
+@media (min-width: 768px) {
+  .page-about .hero-img {
+    max-width: 100%;
+    height: auto;        /* keep image natural height unless very wide screens */
+    object-fit: contain; /* avoid cropping on about graphic */
+  }
+}
+
+/* About page: mission & vision block layout (desktop) */
+@media (min-width: 768px) {
+  .page-about .about-mv-wrap {
+    max-width: 640px;
+    margin-left: 30px; /* move 30px further to the right */
+    text-align: left;   /* align headings and paragraphs under the bw2.svg */
+  }
+  .page-about .about-mv-wrap img {
+    margin-left: 0; /* keep decorative image aligned with text */
+  }
+}
+
+/* Readers section: increase Readers.svg header size on desktop only */
+@media (min-width: 1024px) {
+  .page-about .readers-heading {
+    max-width: 720px; /* larger header image on desktop */
+  }
+}
+
+/* Readers section: bump size slightly on mobile */
+@media (max-width: 767.98px) {
+  .page-about .readers-heading {
+    max-width: 520px; /* slightly larger than Tailwind's max-w-md (448px) */
+  }
+}
+
+/* Readers grid styles */
+.page-about .readers-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile default */
+}
+@media (min-width: 768px) {
+  .page-about .readers-grid {
+    grid-template-columns: repeat(2, 1fr); /* tablet: two columns */
+  }
+}
+@media (min-width: 1024px) {
+  .page-about .readers-grid {
+    grid-template-columns: repeat(3, 1fr); /* desktop: three columns side by side */
+  }
+}
+.page-about .reader-card {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  padding: 22px 18px;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.02);
+}
+.page-about .reader-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: rgba(184, 80, 37, 0.12); /* soft orange tint */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.page-about .reader-icon {
+  width: 28px;
+  height: auto;
+  display: block;
+}
+.page-about .reader-card-title {
+  margin: 6px 0 8px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #401F0E; /* requested header color */
+}
+.page-about .reader-card-text {
+  color: #4b4b4b;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Desktop refinements */
+@media (min-width: 1024px) {
+  .page-about .readers-grid { gap: 22px; }
+  .page-about .reader-card { padding: 26px 22px; }
+  .page-about .reader-card-title { font-size: 20px; }
+  .page-about .reader-card-text { font-size: 15px; line-height: 1.6; }
+}
+
+/* Mobile refinements */
+@media (max-width: 767.98px) {
+  .page-about .readers-grid { gap: 14px; }
+  .page-about .reader-card { padding: 18px 16px; text-align: left; }
+  .page-about .reader-card .reader-icon-wrap { margin-left: 0; }
+  .page-about .reader-card-title { margin-top: 8px; font-size: 17px; }
+  .page-about .reader-card-text { font-size: 14px; }
+}
+@media (min-width: 1280px) {
+  .page-about .hero-img {
+    height: auto;     /* don't force viewport height; let SVG scale */
+    max-height: none; 
+    object-fit: contain;
+  }
+}
+
 /* make header transparent so hero artwork shows through and keep it above the hero */
 .site-header {
   background-color: transparent;
   z-index: 50;
   box-shadow: none;
+}
+/* Remove extra gap created by hr inside the header */
+.site-header hr {
+  margin: 0;
 }
 /* active page indicator for header nav links */
 .site-header nav a.active {
@@ -299,6 +421,39 @@
   padding: 1rem;
   z-index: 81;
   box-shadow: 0 20px 60px rgba(2, 44, 34, 0.36);
+}
+/* Mobile: shrink waitlist modal a bit for better spacing */
+@media (max-width: 575.98px) {
+  /* Increase side margin and reduce overall width slightly */
+  #waitlistModal.modal {
+    --bs-modal-margin: 1.25rem; /* default is .5rem */
+  }
+  #waitlistModal .modal-dialog {
+    max-width: 88vw; /* a touch narrower than full width */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #waitlistModal .modal-content {
+    border-radius: 16px; /* subtle rounding looks better on mobile */
+  }
+  /* Keep inner content inset so controls never touch the edges */
+  #waitlistModal .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  /* Constrain the email pill to the modal width and account for borders/padding */
+  #waitlistModal .email-field {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  #waitlistModal .email-input {
+    min-width: 0; /* prevent flex child from forcing overflow */
+  }
+  /* Slightly tighter button padding to avoid horizontal overflow on very small devices */
+  #waitlistModal .email-btn {
+    padding: 8px 12px;
+  }
 }
 .cover-modal-img {
   width: 100%;
@@ -541,6 +696,27 @@
   margin: 0.5rem auto 0 auto;
 }
 
+/* Desktop-only: increase text sizes for the top-level email list callout ("Got Questions? Let’s Talk") */
+@media (min-width: 768px) {
+  body > section.email-list-section h1 {
+    font-size: 54px !important;
+    line-height: 1.15;
+  }
+  body > section.email-list-section p {
+    font-size: 22px !important;
+    line-height: 1.6;
+  }
+  /* Also target explicit contact-callout sections */
+  section.email-list-section.contact-callout h1 {
+    font-size: 54px !important;
+    line-height: 1.15;
+  }
+  section.email-list-section.contact-callout p {
+    font-size: 22px !important;
+    line-height: 1.6;
+  }
+}
+
 /* Email list section: pill-style input with attached button (matches screenshot) */
 .email-list-section .email-field-wrapper {
   display: flex;
@@ -715,8 +891,11 @@
   display: block;
 }
 .footer-social .social-link svg path {
-  fill: #ffffff; /* white icons */
-  stroke: none;
+  fill: currentColor; /* inherit from link color (white) */
+}
+/* Ensure stroke-based icons (e.g., X) also render in white */
+.footer-social .social-link svg [stroke] {
+  stroke: currentColor;
 }
 .footer-social .social-link:hover {
   transform: translateY(-4px);
@@ -791,9 +970,120 @@ html, body {
   }
 }
 
-/* Mobile: shift hamburger icon 60px to the right */
+/* Mobile: keep hamburger in view (no off-screen shift) */
 @media (max-width: 767.98px) {
   .hamburger-mobile-shift {
-    transform: translateX(100px); /* shift it 100px to the right */
+    transform: translateX(0);
   }
 }
+
+/* =====================
+   FAQ Section Styles
+   ===================== */
+.faq-section {
+  background: #FAF1E9; /* soft warm tint like reference */
+}
+.faq-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+}
+@media (max-width: 991.98px) {
+  .faq-layout { grid-template-columns: 1fr; }
+}
+.faq-kicker {
+  margin-bottom: 1.25rem;
+}
+
+/* Sidebar */
+.faq-sidebar {
+  background: #F8EAE0;
+  border-radius: 12px;
+  padding: 16px 14px;
+}
+.faq-cats { list-style: none; padding: 0; margin: 0; }
+.faq-cats li + li { margin-top: 12px; }
+.faq-cat {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 10px 12px 10px 16px;
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  color: #492C25;
+  font-weight: 600;
+  cursor: pointer;
+}
+.faq-cat.active {
+  background: #ffffff;
+  border-left-color: #B75025;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+/* Content */
+.faq-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 18px 12px 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+.faq-heading {
+  font-weight: 800;
+  color: #492C25;
+  margin-bottom: 14px;
+}
+
+/* Search */
+.faq-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 999px;
+  padding: 6px 12px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
+  margin-bottom: 14px;
+}
+.faq-search-icon { opacity: 0.6; }
+.faq-search {
+  border: 0; outline: none; flex: 1 1 auto; background: transparent;
+}
+
+/* List / Accordion */
+.faq-list { margin-top: 10px; }
+.faq-item {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+  padding: 0 12px;
+  margin-bottom: 10px;
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 6px;
+  color: #2a2a2a;
+  font-weight: 600;
+}
+.faq-item[open] summary { color: #492C25; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item .faq-answer {
+  padding: 0 6px 14px 6px;
+  color: #4b4b4b;
+}
+
+/* Pagination */
+.faq-pagination {
+  display: flex; align-items: center; gap: 10px; justify-content: center;
+  padding: 10px 0 0 0;
+}
+.faq-pagination .pager-btn {
+  background: #EDE2DA; color: #492C25; border: 0; border-radius: 999px; padding: 6px 12px; font-weight: 600;
+}
+.faq-pagination .pager-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.pager-list { display: flex; list-style: none; gap: 8px; margin: 0; padding: 0; }
+.pager-num { width: 34px; height: 34px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.08); background: #fff; color: #492C25; font-weight: 700; }
+.pager-num.active { background: #B75025; color: #fff; border-color: #B75025; }
+
