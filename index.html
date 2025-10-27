@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
     />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -147,19 +147,8 @@
                       >CONTACT US</a
                     >
                   </li>
-                    <li class="ml-8" style="position: relative; left: 195px;">
-                      <a
-                        class="inline-block px-6 py-2 text-white font-medium rounded-full transition"
-                        href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#waitlistModal"
-                        aria-controls="waitlistModal"
-                        style="background-color: #B85025;"
-                      >Become a writter</a>
-                    </li>
                   </ul>
             <br />
-            <hr>
           </nav>
          
           <div class="relative pt-0 pb-6 sm:pb-8 lg:pt-0 lg:pb-12">
@@ -191,25 +180,20 @@
             <div class="block md:hidden">
               <div class="relative w-full hero-wrap">
                  <br />
-                <picture>
-                  <source srcset="images/bg-mobile.svg" type="image/svg+xml" />
-                  <img
-                    src="images/bg-mobile.svg"
-                    alt="Illustration representing green energy (mobile)"
-                    loading="lazy"
-                    class="hero-img w-full"
-                  />
-                </picture>
-                <!-- CTA overlay -->
-                <div class="hero-cta-wrap">
-                  <div class="container mx-auto px-4">
-                    <div class="hero-cta-inner">
-                      <a href="#" class="hero-cta" data-bs-toggle="modal" data-bs-target="#waitlistModal">Join the waitlist</a>
-                    </div>
+                <!-- Mobile content card modeled after the reference -->
+                <div class="px-4">
+                  <div class="hero-card-mobile" role="region" aria-label="Intro">
+                    <h2 class="hero-card-title" style="background: linear-gradient(90deg, #B85025, #F29F67, #B85025); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;">Where Every African Story Belongs</h2>
+                    <p class="hero-card-copy">
+                      Discover powerful African voices through fiction that feels real. From city streets to village myths, from first love to fierce truths. Enjoy African stories, wherever you are.
+                    </p>
+                    <a href="#" class="hero-card-btn" data-bs-toggle="modal" data-bs-target="#waitlistModal" aria-controls="waitlistModal">Join the waitlist</a>
                   </div>
                 </div>
-              </div>
-            </div>
+                <picture>
+                 
+                </picture>
+               
 
             <div class="container mx-auto px-4 relative text-center">
             </div>
@@ -255,18 +239,6 @@
                   <li><a class="block text-teal-900 hover:text-lime-500 font-medium" href="contact.html">CONTACT US</a></li>
                 </ul>
               </nav>
-
-              <div class="mt-auto p-5 border-t mb-20 md:mb-0">
-                <a
-                  href="#waitlistModal"
-                  class="inline-block w-full text-center px-4 py-2 rounded-full text-white font-medium"
-                  style="background-color:#B85025;"
-                  data-bs-toggle="modal"
-                  data-bs-target="#waitlistModal"
-                  aria-controls="waitlistModal"
-                  x-on:click="mobileNavOpen=false"
-                >Become a writer</a>
-              </div>
             </aside>
           </div>
         </section>
@@ -304,9 +276,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <div class="relative book-scene">
               <!-- lines overlay placed behind the covers -->
-              <img src="images/book section/lines.svg" alt="Decorative lines" class="lines-overlay" aria-hidden="true" />
-
-              <div class="book-grid mobile-scroller" role="list" aria-label="Featured books">
+               <div class="book-grid mobile-scroller" role="list" aria-label="Featured books">
                 <button class="cover-btn" aria-label="View Book 1" data-src="images/book section/1.svg"><img role="listitem" tabindex="0" src="images/book section/1.svg" alt="Book cover 1" class="book-cover" /></button>
                 <button class="cover-btn" aria-label="View Book 2" data-src="images/book section/2.svg"><img role="listitem" tabindex="0" src="images/book section/2.svg" alt="Book cover 2" class="book-cover" /></button>
                 <button class="cover-btn" aria-label="View Book 3" data-src="images/book section/3.svg"><img role="listitem" tabindex="0" src="images/book section/3.svg" alt="Book cover 3" class="book-cover" /></button>
@@ -356,22 +326,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <!-- Section2 (MOBILE ONLY) -->
   <section class="block md:hidden py-8 px-4 bg-gray-100" aria-label="Image and text block - mobile">
-    <div class="max-w-xl mx-auto text-center">
-      <!-- Image (stacked, full width) -->
-      <img src="images/img01.svg" alt="Example Image" class="w-full h-auto mb-6" />
+    <div class="max-w-xl mx-auto">
+      <div class="section2-card-mobile text-center" role="region" aria-label="Stay Connected content">
+        <!-- Decorative icons row -->
+        <div class="section2-icons-row" aria-hidden="false">
+          <img src="images/img02.svg" alt="Decorative icons" class="section2-icons" />
+        </div>
 
-      <!-- Decorative/heading image -->
-      <img src="images/img02.svg" alt="Example Text" class="inline-block mb-4 w-3/4 max-w-xs" />
+        <!-- Heading -->
+        <h2 class="section2-title">Stay Connected To Culture. One Story At A Time.</h2>
 
-      <!-- Mobile-optimized heading -->
-      <h1 style="font-family: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:28px; font-weight:800; color:#492C25; margin-bottom:12px; line-height:1.15;">
-        Stay Connected to Culture.<br />One Story at a Time.
-      </h1>
+        <!-- Copy -->
+        <p class="section2-copy">
+          We make it easy to experience the richness of African heritage through fiction. Whether it's folklore, family, or tradition; discover stories that keep you grounded in who you are.
+        </p>
 
-      <!-- Mobile-optimized body -->
-      <p class="text-base leading-relaxed text-gray-700" style="font-weight:300;">
-        We make it easy to experience the richness of African heritage through fiction. Whether it's folklore, family, or tradition; discover stories that keep you grounded in who you are.
-      </p>
+        <!-- Rounded image below copy -->
+        <img src="images/img01.svg" alt="Family reading together" class="section2-image" />
+      </div>
     </div>
   </section>
 
