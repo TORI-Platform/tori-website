@@ -7,6 +7,22 @@
   color: #401e0d;
 }
 
+/* --- Header / Navbar tweaks --- */
+/* Add a subtle divider line under the navbar across all pages */
+.site-header nav {
+  border-bottom: 1px solid rgba(73, 44, 37, 0.18); /* soft brown from palette */
+}
+
+/* Mobile: make the logo a bit larger and ensure crisp rendering */
+@media (max-width: 767.98px) {
+  .site-header nav img[alt="TORÍ logo"] {
+    height: 3rem !important; /* ~48px, up from tailwind h-10 (40px) */
+    width: auto;
+    image-rendering: -webkit-optimize-contrast; /* improve raster sharpness on WebKit */
+    image-rendering: crisp-edges;
+  }
+}
+
 /* CTA styling: keep these rules as fallbacks but prefer Tailwind utility classes in markup */
 .site-header .cta-btn {
   background-color: #b85025;
@@ -55,7 +71,7 @@
   align-items: center;
   max-width: 920px; /* aligns with other centered content */
   /* moved up 40px and left 30px relative to previous position */
-  transform: translateX(65px) translateY(-135px);
+    transform: translateX(65px) translateY(-135px);
 }
 .hero-cta {
   display: inline-block;
@@ -100,7 +116,7 @@
     align-items: center;
     max-width: 920px; /* match typical content width */
     /* small nudge to better align with page content (tweak as needed) */
-  transform: translateX(53px) translateY(-135px);
+  transform: translateX(78px) translateY(-135px);
   }
   .hero-cta {
     padding: 1rem 1.5rem;
@@ -114,7 +130,7 @@
     bottom: 20%;
   }
   .hero-cta-inner {
-    transform: translateX(41px) translateY(-135px);
+  transform: translateX(83px) translateY(-135px);
   }
 }
 
