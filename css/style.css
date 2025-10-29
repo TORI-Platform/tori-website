@@ -71,7 +71,8 @@
   align-items: center;
   max-width: 920px; /* aligns with other centered content */
   /* moved up 40px and left 30px relative to previous position */
-    transform: translateX(65px) translateY(-135px);
+  /* align with container grid (no extra horizontal offset) */
+  transform: translateX(0) translateY(-135px);
 }
 .hero-cta {
   display: inline-block;
@@ -116,7 +117,7 @@
     align-items: center;
     max-width: 920px; /* match typical content width */
     /* small nudge to better align with page content (tweak as needed) */
-  transform: translateX(78px) translateY(-135px);
+  transform: translateX(40px) translateY(-135px);
   }
   .hero-cta {
     padding: 1rem 1.5rem;
@@ -130,7 +131,7 @@
     bottom: 20%;
   }
   .hero-cta-inner {
-  transform: translateX(83px) translateY(-135px);
+  transform: translateX(40px) translateY(-135px);
   }
 }
 
@@ -293,19 +294,19 @@
 @media (max-width: 767.98px) {
   .site-header hr { border-top-color: #E6CDBF; border-top-width: 1px; }
 }
-/* active page indicator for header nav links */
-.site-header nav a.active {
+/* active page indicator for header nav links (exclude the logo by scoping to list links only) */
+.site-header nav ul a.active {
   color: #401e0d;
   position: relative;
   font-weight: 600;
 }
-.site-header nav a.active::after {
+.site-header nav ul a.active::after {
   content: "";
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: -0.5rem;
-  width: 40%;
+  width: 65%;
   height: 3px;
   background: #401e0d;
   border-radius: 2px;
@@ -313,7 +314,7 @@
 
 /* Hide desktop underline active indicator on small screens; mobile uses dot in drawer */
 @media (max-width: 767.98px) {
-  .site-header nav a.active::after { display: none; }
+  .site-header nav ul a.active::after { display: none; }
 }
 /* adjustments for the book-frame (book covers) section: heading, overlay and responsive sizing
   zero vertical gap to the hero by default. Reduce top padding and increase heading size. */
