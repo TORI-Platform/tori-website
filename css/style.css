@@ -165,6 +165,7 @@
 }
 
 /* Page-specific overrides for About: make hero full-bleed and reduce top/side padding */
+.success-modal { border-radius: 16px; overflow: hidden; }
 .page-about .hero-wrap { padding-top: 0; }
 .page-about .hero-img {
   max-width: 100%; /* full width edge-to-edge */

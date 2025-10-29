@@ -513,6 +513,21 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     </div>
   </div>
+  
+  <!-- Success Modal shown after Notify Me -->
+  <div class="modal fade" id="notifySuccessModal" tabindex="-1" aria-labelledby="notifySuccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content success-modal">
+        <div class="modal-body text-center" style="background:#ffffff;">
+          <img src="images/done.svg" alt="Illustration" style="width: 160px; max-width: 75%; height: auto; margin: 16px auto 8px; display:block;" />
+          <h2 id="notifySuccessModalLabel" style="color:#492C25; font-weight:800; font-size:26px; margin: 8px 0 14px;">
+            See You At Launch 🚀
+          </h2>
+          <button type="button" class="btn btn-sm rounded-pill px-4" data-bs-dismiss="modal" style="background-color:#B75025; color:#fff; font-weight:600;">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <!-- Bootstrap 5 Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -590,6 +605,32 @@ document.addEventListener('DOMContentLoaded', function () {
           window.addEventListener('keyup', function (e) { if (e.key === 'Escape') closeModal(); });
         } catch (err) {
           console.warn('cover modal init error', err);
+        }
+      });
+
+      // waitlist form: show success popup instead of submitting
+      document.addEventListener('DOMContentLoaded', function(){
+        try {
+          var waitlistForm = document.querySelector('#waitlistModal form');
+          if (!waitlistForm) return;
+          waitlistForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            // hide the waitlist modal if open
+            try {
+              var waitlistEl = document.getElementById('waitlistModal');
+              var m1 = bootstrap.Modal.getInstance(waitlistEl) || new bootstrap.Modal(waitlistEl);
+              m1.hide();
+            } catch (err) { /* noop */ }
+
+            // show the success modal
+            var successEl = document.getElementById('notifySuccessModal');
+            if (successEl) {
+              var m2 = new bootstrap.Modal(successEl);
+              m2.show();
+            }
+          });
+        } catch (e) {
+          console.warn('waitlist success modal error', e);
         }
       });
     </script>
